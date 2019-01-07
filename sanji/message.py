@@ -1,8 +1,7 @@
-import simplejson as json
+import json
 import copy
 import os
 import random
-import six
 from random import randint
 
 try:
@@ -120,7 +119,10 @@ class Message(object):
     Message
     """
     def __init__(self, message, generate_id=False):
-        if isinstance(message, six.string_types):
+        if isinstance(message, bytes):
+            message = message.decode("utf-8")
+
+        if isinstance(message, str):
             try:
                 message = json.loads(message)
             except Exception:
@@ -131,7 +133,7 @@ class Message(object):
             raise TypeError("Message must be JSON string or Dict")
 
         # put all prop into object
-        for (prop, value) in message.iteritems():
+        for (prop, value) in message.items():
             setattr(self, prop, value)
 
         if generate_id is True:

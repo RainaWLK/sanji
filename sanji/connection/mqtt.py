@@ -101,7 +101,7 @@ class Mqtt(Connection):
         """
         set_tunnels(self, tunnels):
         """
-        for tunnel_type, (tunnel, callback) in tunnels.iteritems():
+        for tunnel_type, (tunnel, callback) in tunnels.items():
             if tunnel is None:
                 continue
             self.set_tunnel(tunnel_type, tunnel, callback)

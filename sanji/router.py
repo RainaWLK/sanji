@@ -126,7 +126,7 @@ class Router(object):
 
     def get_routes(self):
         routes = {}
-        for resource, route in self.routes.iteritems():
+        for resource, route in self.routes.items():
             routes.update({resource: route.get_methods()})
 
         return routes
